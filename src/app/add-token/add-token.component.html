@@ -1,0 +1,90 @@
+
+    <div class="wrapper ">
+           
+      <app-sidebar></app-sidebar>
+  
+
+  <div class="main-panel">
+      <!-- Navbar -->
+     
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top ">
+          <div class="container-fluid">
+              <div class="navbar-wrapper">
+                  <a class="navbar-brand" href="javascript:void(0);">Add Token</a>
+              </div>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false"
+                  aria-label="Toggle navigation">
+                  <span class="sr-only">Toggle Nav</span>
+                  <!-- <span class="navbar-toggler-icon icon-bar"></span>
+                  <span class="navbar-toggler-icon icon-bar"></span>
+                  <span class="navbar-toggler-icon icon-bar"></span> -->
+              </button>
+              <div class="collapse navbar-collapse justify-content-end">
+                
+                   
+                        
+                          <app-side-icon></app-side-icon>
+                      
+               </div>
+             
+          </div>
+      </nav>
+     
+      <!-- End Navbar -->
+      
+      <div class="content">
+          <div class="container-fluid pt-4">
+              <div class="card">
+                  <div class="card-header card-header-tabs card-header-primary">
+                      <h4 class="card-title font-weight-bold">Add Token</h4>
+                  </div>
+                  <form class="form">
+                  <div class="card-body">
+                    
+                          <div class="row">
+                              <div class="col-md-8">
+                                  <div class="form-group">
+                                      <div class="form-group bmd-form-group">
+                                          <!-- <label class="bmd-label-floating">Title </label> -->
+                                          <input type="text" class="form-control" [(ngModel)] = "name" value="{{name}}" placeholder="Token Name"  [ngModelOptions]="{standalone: true}" disabled>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-8">
+                                  <div class="form-group">
+                                      <div class="form-group bmd-form-group">
+                                          <!-- <label class="bmd-label-floating"> Write Description</label> -->
+                                          <input class="form-control" rows="5" placeholder="Enter Token Address" #search [(ngModel)]="address" (keyup)="getAddress()" [ngModelOptions]="{standalone: true}">
+                                      </div>
+                                     
+                                  </div>
+                              </div>
+                          </div>
+                       
+                          <div class="row align-items-baseline">
+                             
+                              <div class="col-md-12 text-md-center">
+                                  <div class="form-group bmd-form-group d-inline-flex">
+                                      <button type="submit" (click)=addToken() class="btn btn-primary ">ADD </button>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="clearfix"></div>
+                      
+                  </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+      <app-footer></app-footer>
+
+  </div>
+</div>
+ <app-logout></app-logout>
+
+
+
+

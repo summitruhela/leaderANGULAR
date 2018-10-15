@@ -1,0 +1,136 @@
+
+
+
+
+  <div class="wrapper ">
+  
+      <app-sidebar></app-sidebar>
+  
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="javascript:viod(0);">Announcement</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="sr-only">Toggle Nav</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+          
+                <app-side-icon></app-side-icon>
+             
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid  pt-4">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card my-3">
+                <div class="card-header card-header-primary">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h4 class="card-title font-weight-bold">Announcement List</h4>
+                        </div>
+                        <div class="col-md-4 text-md-right">
+                            <form class="navbar-form d-inline-flex ml-md-auto" [formGroup]="Form">
+                                <!-- <div class="input-group no-border" >
+                                    <input type="text" value="" class="form-control text-white" placeholder="Search by name">
+                                    <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                    <i class="material-icons" >search</i>
+                                    <div class="ripple-container"></div>
+                                    </button>
+                                </div> -->
+                            </form>
+                        </div>
+                        <div class="col-md-4 text-md-right">
+                          <div class="form-group bmd-form-group d-inline-flex">
+                              <button type="submit" (click)="add()"  class="btn btn-primary ">Add Announcement </button>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-bordered">
+                      <thead class=" text-primary border-top">
+                         <!-- <th>Sr.No.</th> -->
+                        <th>Title</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Total Users</th>
+                        <th>Action</th>
+                        <!-- <th class="text-right">Action</th> -->
+                      </thead>
+                      <tbody>
+                        <!-- <tr>
+                          <td>Announcement 1</td>
+                          <td class="no-wrap">01/09/2018</td>
+                          <td class="no-wrap">17/09/2018</td>
+                          <td>20%</td>
+                          <td class="no-wrap text-right">
+                              <button class="btn btn-sm btn-primary" (click)="edit()"><i class="fa fa-edit"></i></button>
+                              <button class="btn btn-sm btn-danger" ><i class="fa fa-trash"></i></button>
+                          </td>
+                          , totalItems: paginationData.total
+                        </tr> -->
+                        <tr *ngFor="let item of event | paginate: { itemsPerPage: limit, currentPage: page, totalItems: total };let i = index">
+                            <!-- <td *ngIf="p == 1">{{i + 1}}</td>
+                            <td *ngIf="p > 1">{{i + 1 + 10 * (p-1)}}</td> -->
+                            <td>{{item.title}}</td>
+                            <td>{{item.startDate}}</td>
+                            <td>{{item.endDate}}</td>
+                            <td>{{item.totalUser}}</td>
+                            <td>
+                              <div class="action-btn">
+                                  
+                                  <a class="btn btn-sm btn-primary" (click)="edit(item._id)">
+                                      <i class="fa fa-edit"></i> Edit</a>
+                                  <a class="btn btn-sm btn-danger" (click)="userdel(item._id)">
+                                      <i class="fa fa-trash"></i> Delete</a>
+                              </div>
+                          </td>
+                            <td></td>
+                            <!-- <td>
+                            <div class="action-btn">
+                          
+                            <a class="btn btn-sm btn-primary" (click)="edit(i)">
+                            <i class="fa fa-edit"></i> Edit</a>
+                            <a class="btn btn-sm btn-danger" (click)="userdel(i)">
+                            <i class="fa fa-trash"></i> Delete</a>
+                            </div>
+                            </td> -->
+                            <!-- <td>
+                            <label class="switch">
+                            <input type="checkbox" name="active" (click)="userStatus(item)" value='item.status' [(ngModel)]="item.status">
+                            <span class="slider round"></span>
+                            </label>
+                            </td> -->
+                            </tr>
+                        
+                      </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="getAllCustomer('',$event)"></pagination-controls>
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <app-footer> </app-footer>
+    </div>
+  </div>
+
+  <app-logout></app-logout>
+
+
+

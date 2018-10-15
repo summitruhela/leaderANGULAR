@@ -1,0 +1,73 @@
+<div class="sidebar" data-color="azure" data-background-color="white" data-image="../assets/img/sidebar-3.jpg">
+<div class="logo">
+    <a (click)="tabManag('dashboard')" class="simple-text logo-normal">
+        Anzen
+    </a>
+</div>
+<div class="sidebar-wrapper">
+  <ul class="nav">
+    <li class="nav-item" [ngClass]="{ 'active': isActive == 'dashboard' }">
+      <a class="nav-link">
+        <i class="material-icons">dashboard</i>
+<p><a (click)="tabManag('dashboard')"  style="cursor:pointer">Dashboard</a> </p>
+      </a>
+    </li>
+    <li class="nav-item" [ngClass]="{ 'active': isActive == 'manage-user' }">
+      <a class="nav-link" >
+        <i class="material-icons">group</i>
+      
+        <p><a (click)="tabManag('manage-user')" style="cursor:pointer">Manage Users</a> </p>
+      </a>
+    </li>
+    <li class="nav-item sub_items" [ngClass]="{ 'active': isActive == 'announcement' }">
+      <a class="nav-link">
+          <i class="material-icons">announcement</i>
+    <p><a (click)="tabManag('announcement')" style="cursor:pointer">Announcements</a> </p>
+    <!-- (click)="tabManag('announcement')"  -->
+      </a>
+      <a  data-target="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"></a>
+      <ul class="collapse list-unstyled" id="pageSubmenu">
+        <li class="nav-item sub_items" [ngClass]="{ 'active': isActive == 'assign-announcement' }">
+          <a class="nav-link" >
+        <p><a [ngClass]="{ 'active': isActive == 'assign-announcement' }" (click)="tabManag('assign-announcement')">Assign Annoucements</a> </p>
+
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="nav-item" [ngClass]="{ 'active': isActive == 'manage-content' }">
+      <a class="nav-link">
+        <i class="material-icons">bubble_chart</i>
+        
+        <p><a  (click)="tabManag('manage-content')" style="cursor:pointer">Manage Content</a> </p>
+        <!-- (click)="tabManag('manage-content')"  -->
+      </a>
+    </li>
+  <!-- @sumit -->
+  <!-- [ngClass]="{ 'active': isActive == 'user-token' }" -->
+    <li class="nav-item" [ngClass]="(isActive=='user-token' || isActive=='token') ? 'active' : 'inactive'">
+        <a class="nav-link">
+          <i class="material-icons">bubble_chart</i>
+          
+          <p><a (click)="tabManag('token')" style="cursor:pointer">Token Management</a> </p>
+          <!-- (click)="tabManag('token')" -->
+          </a>
+      </li>
+      <!-- @end -->
+    <li class="nav-item " [ngClass]="{ 'active': isActive == 'setting' }">
+      <a class="nav-link">
+        <i class="material-icons">settings</i>
+       <p><a   (click)="tabManag('setting')" style="cursor:pointer">Settings</a> </p>
+       <!-- (click)="tabManag('setting')" -->
+      </a>
+    </li>
+    <li class="nav-item " [ngClass]="{ 'active': isActive == 'change_password' }">
+        <a class="nav-link">
+          <i class="material-icons">bubble_chart</i>
+         <p><a (click)="tabManag('change_password')" style="cursor:pointer">Change Password</a> </p>
+         <!-- (click)="tabManag('change_password')" -->
+        </a>
+      </li>
+  </ul>
+</div>
+</div>

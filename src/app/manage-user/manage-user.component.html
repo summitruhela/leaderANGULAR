@@ -1,0 +1,206 @@
+
+
+
+
+  <div class="wrapper ">
+      
+      <app-sidebar></app-sidebar>
+
+    
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="javascript:void(0);">Manage User</a>
+          </div>
+          <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="sr-only">Toggle Nav</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button> -->
+          <div class="collapse navbar-collapse justify-content-end">
+         
+           
+               
+                <app-side-icon></app-side-icon>
+              
+            
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid  pt-4">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card my-3">
+                <div class="card-header card-header-primary">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h4 class="card-title font-weight-bold">User List</h4>
+                        </div>
+                        <div class="col-md-4 text-md-right">
+                          <form [formGroup]="dashboardForm" > 
+                            <div class="form-group">
+                                <div class="search-icon pull-right" align="right" >
+                                    <input type="text" (keyup)="search()" class="form-control max-wt-300 search-input" placeholder="Search By Name / Email" formControlName="search" >
+                                    
+                                </div>
+                            </div>
+                        </form>        
+                        </div>
+                    </div>
+                  
+                  <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-bordered">
+                      <thead class=" text-primary border-top">
+                        <th>Sr.No.</th>
+                        <th> Name</th>
+                        <th>Email Address</th>
+                        <th>Phone Number</th>
+                        <th>Last Device</th>
+                        <th>Last Sign In</th>
+                         
+                         <th>Status</th>
+                         <th>Action</th>
+                      </thead>
+                      <tbody>
+                     
+                        <tr *ngFor="let item of event | paginate: { itemsPerPage: limit, currentPage: page, totalItems: total };let i = index">
+                            <td *ngIf="p == 1">{{i + 1 }}</td>
+                            <td *ngIf="p > 1">{{i + 1 + 10 * (p-1) }}</td>
+                            <td>{{item?.userName }}</td>
+                            <td>{{item?.email }} </td>
+                            <td>{{item?.mobileNumber }}</td> 
+                            <td>{{item?.signInHistoryArray[0]?.deviceId  }}</td>
+                            <td>{{item?.signInHistoryArray[0]?.signInTime|date:'yyyy-MM-dd HH:mm:ss'  }}</td>
+                           <td>{{item?.status }}</td>
+                            <td>
+                              <div class="action-btn">
+                                  <a class="btn btn-sm btn-success"  (click)="name(item.walletAddress,item)">
+                                      <!-- (click)="view(item)" -->
+                                      <i class="fa fa-eye"></i> View Profile</a>
+                                  <!-- <a class="btn btn-sm btn-primary" (click)="edit(item._id)">
+                                      <i class="fa fa-edit"></i> Edit</a> -->
+                                  <a  class="btn btn-sm btn-primary" (click)="changeStatus(item._id,item?.status)" *ngIf="item?.status != 'BLOCK'"><i class="fa fa-status"></i>Block</a>
+                                      <a  class="btn btn-sm btn-primary" (click)="changeStatus(item._id,item?.status) "  *ngIf="item?.status == 'BLOCK'"><i class="fa fa-status"></i>Active</a>
+                                 <a  class="btn btn-sm btn-danger" (click)="userdel(item._id)">
+                                      <!-- <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#popup">Logout</a> -->
+                                        <i class="fa fa-trash"></i>Delete</a>
+                              </div>
+                          </td>
+                            <!-- <td>{{item.lastDevice}}</td> -->
+                            <!-- <td>
+                                
+                                    <div class="tg-list-item">
+                                        <a class="btn btn-sm " (click)="userdel(item._id)" >
+                                        <i class="fa fa-status"> </i>Change status</a>
+                                    </div>
+                              
+                              </td>                     -->
+                         
+                          </tr>
+                          <!-- <tr *ngIf="Event.length==0">
+                            <span>No record found</span>
+                        </tr> -->
+                      </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                  </div>
+                  <div class="tbl_footer">
+                      <div class="row align-items-center flex-wrap">
+                        <!-- <div *ngIf="paginationData.total >10">
+                      </div> -->
+                          <!-- <div class="col-md-5 text-md-right">
+                                <ul class="pagination d-inline-flex my-2">
+                                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">...</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">20</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                </ul>
+                          </div> -->
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+
+<!-- signout_modal Start -->
+<div class="modal fade global-modal reset-modal" id="signout_modal">
+  <div class="modal-dialog max-WT-500 modal-dialog-centered">
+      <div class="modal-content">
+          <div class="inner_border_area">
+              <!-- Modal body -->
+              <div class="modal-body  text-center">
+                  <div class="row align-items-center modal_flax_height">
+                      <div class="col">
+                          <div class="box-title mb40 d-inline-block">
+                              <!-- <i class="fas fa-power-off off-icon"></i> -->
+                              <p class="mt40">Are you sure you want to Delete?</p>
+                          </div>
+                          <div class="text-center">
+                              <a href="javascript:;" class="btn btn-primary btn-noYes mr-2"(click)="yes()">YES</a>
+                              <button type="button" class="btn btn-danger btn-noYes" data-dismiss="modal">CANCEL</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Signout Modal -->
+<!-- ------------ ----  status modal----- - - - - -- - - - -- - - - - - - - - - -->
+
+<div class="modal fade global-modal reset-modal" id="Status_modal">
+  <div class="modal-dialog max-WT-500 modal-dialog-centered">
+      <div class="modal-content">
+          <div class="inner_border_area">
+              <!-- Modal body -->
+              <div class="modal-body  text-center">
+                <div class="row align-items-center modal_flax_height">
+                    <div class="col">
+                        <div class="box-title mb40 d-inline-block">
+                            <!-- <i class="fas fa-power-off off-icon"></i> -->
+                            <p class="mt40">Are you sure you want to {{ stat }} this user?</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="javascript:;" class="btn btn-primary btn-noYes mr-2"(click)="yes1()">YES</a>
+                            <button type="button" class="btn btn-danger btn-noYes" data-dismiss="modal">CANCEL</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+      </div>
+      <app-footer> </app-footer>
+    </div>
+  </div>
+
+  <app-logout></app-logout>
+
+
+

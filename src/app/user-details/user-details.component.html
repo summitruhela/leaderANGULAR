@@ -1,0 +1,244 @@
+<div class="wrapper ">
+        
+        <app-sidebar></app-sidebar>
+
+    
+    <div class="main-panel">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-absolute fixed-top ">
+            <div class="container-fluid">
+                <div class="navbar-wrapper">
+                    <a class="navbar-brand" >User Details</a>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="sr-only">Toggle Nav</span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end">
+                    
+                  
+                            <app-side-icon></app-side-icon>
+                      
+                </div>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+        <div class="content">
+            <div class="container-fluid pt-4">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-tabs card-header-primary">
+                                <div class="nav-tabs-navigation">
+                                    <div class="nav-tabs-wrapper">
+
+                                        <span class="nav-tabs-title">{{Username}}</span>
+                                        <ul class="nav nav-tabs" data-tabs="tabs">
+                                            <li class="nav-item">
+                                                <a class="nav-link" [ngClass]="{'active': tab =='device'}" data-toggle="tab" [routerLink]="['/user_details',params,'device']">
+                                                    <i class="material-icons">important_devices</i> Device History
+                                                    <div class="ripple-container"></div>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a (click)="ab()" class="nav-link" [ngClass]="{'active': tab =='transaction'}" data-toggle="tab" [routerLink]="['/user_details',params,'transaction']">
+                                                    <i class="material-icons">credit_card</i> Transaction History
+                                                    <div class="ripple-container"></div>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane active"  [ngClass]="{'active': tab =='device'}" *ngIf="(tab == 'device')" id="device">
+
+                                        <div class="border p-3"> 
+                                             <div class="row">
+                                                <div class="col-lg-2 col-md-6">
+                                                    <h5 class="font-weight-bold my-2">Last Device</h5>
+                                                   
+                                                    <p class="m-0">{{firstEventData.deviceId}}</p>
+                                                </div>
+                                                <div class="col-lg-3 col-md-6">
+                                                    <h5 class="font-weight-bold my-2">Last Sign In</h5>
+                                                   
+                                                    <p class="m-0">{{firstEventData.signInTime|date:'yyyy-MM-dd HH:mm:ss'}}</p>
+                                                </div>
+                                                <div class="col-lg-3 col-md-6">
+                                                    <h5 class="font-weight-bold my-2">Last SignOut</h5>
+                                                    
+                                                    <p class="m-0" *ngIf="firstEventData?.signOutTime == 0"> -- </p>
+                                                    <p class="m-0" *ngIf="firstEventData?.signOutTime  != 0">{{firstEventData.signOutTime|date:'yyyy-MM-dd HH:mm:ss'}}</p>
+                                                </div>
+                                               
+                                                <!--  -->
+                                                <div class="col-lg-2 col-md-6">
+                                                    <h5 class="font-weight-bold my-2">Last Location</h5>
+                                                
+                                                    {{firstEventData.location}}
+                                                   
+                                                </div>
+                                                <div class="col-lg-2 col-md-6">
+                                                    <h5 class="font-weight-bold my-2">Status</h5>
+                                                    <p class="text-danger m-0">{{firstEventData.status}}</p>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        <form [formGroup]="dashboardForm" > 
+                                        <div class="table-responsive mt-3">
+                                            <table class="table table-bordered">
+                                                <thead class="border-top text-primary">
+                                                   
+                                                        <th>Device</th>
+                                                        <th>Last Sign In</th>
+                                                        <th>Logout</th>
+                                                        <th>Location</th>
+                                                        <th>Status</th>
+                                                    
+                                                </thead>
+                                                
+                                                <tbody>
+                                                    <tr *ngFor="let item of eventData | paginate: { itemsPerPage: 10, currentPage: 1, totalItems: 10 };index as i">
+                                                            <!-- //{{item.date * 1000 | date:'yyyy-MM-dd HH:mm:ss Z'}} -->
+                                                        <td>{{item.deviceId}}</td>
+                                                        <td>{{item.signInTime|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                                        <td *ngIf="item.signOutTime == 0">--</td>
+                                                        <td *ngIf="item.signOutTime != 0">{{item.signOutTime|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                                        <td>{{item.location}}</td>
+                                                        <td>{{item.status}}</td>
+                                                        <!-- <td>{{item.lastDevice}}</td> -->
+                                                        <!-- <td>
+"status":"signIn","_id":"5bbb3de26ad1222a0bbde25e","deviceId":"iPhone10,5","signInTime":"1538997730143","location":"New Delhi","signOutTime":"0"
+                                                            <div class="tg-list-item">
+                                                                <a class="btn btn-sm " (click)="userdel(item._id)">
+                                                                    <i class="fa fa-status"> </i>Change status</a>
+                                                            </div>
+
+                                                        </td> -->
+
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        </form>
+                                        <!-- <div class="tbl_footer">
+                                            <div class="row align-items-center flex-wrap">
+                                                <div class="col-md-7">
+                                                    <p class="small m-0">Showing results 7 of 14 out of 20</p>
+                                                </div>
+                                                <div class="col-md-5 text-md-right">
+                                                    <ul class="pagination d-inline-flex my-2">
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="#">Previous</a>
+                                                        </li>
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="#">1</a>
+                                                        </li>
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="#">2</a>
+                                                        </li>
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="#">...</a>
+                                                        </li>
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="#">20</a>
+                                                        </li>
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="#">Next</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                    <div class="tab-pane"  [ngClass]="{'active': tab =='transaction'}" *ngIf="(tab == 'transaction')" id="transaction">
+                                        <div class="type_trans text-right">
+                                            <!-- <form class="d-inline-flex ml-md-auto"> -->
+                                                <div class="input-group max-wt-250 d-inline-block">
+                                                    <select class="form-control custom_select w-100"  (change)="type($event)" [(ngModel)]='aa.type'>
+                                                        <option selected value="all">Type</option>
+                                                        <option value="sent">Deposit</option>
+                                                        <option value="receive">Withdraw</option>
+                                                    </select>
+                                                </div>
+                                            <!-- </form> -->
+                                        </div>
+                                        <div class="table-responsive mt-3">
+                                            <table class="table table-bordered">
+                                                <thead class="border-top text-primary">
+                                                        
+                                                        <th>S. No.</th> 
+                                                        <th>From Address</th>
+                                                        <th>To Address</th>
+                                                        <th>Amount</th>
+                                                        <th>Date/Time</th>
+                                                        <th>Transection Hash</th>
+                                                </thead>
+                                                <tbody> 
+                                                        <!-- | paginate: { itemsPerPage: limit, currentPage: page, totalItems: total };let i = index -->
+                                             <tr *ngFor="let item of modified | paginate: { itemsPerPage: limit, currentPage: p, totalItems: total };let i = index">
+                                                    <td *ngIf="p == 1">{{i + 1 }}</td>
+                                                    <td *ngIf="p > 1">{{i + 1 + 10 * (p-1) }}</td>
+                                                               
+                                                                <!-- <td>{{item.to}}</td>
+                                                                <td>{{item.value}}</td> -->
+                                                                <td>{{item.from}}</td>
+                                                            
+                                                                <td>{{item.to}}</td>
+                                                                <td>{{item.value}}</td>
+                                                                <td>{{item.timeStamp|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                                                <td>{{item.hash}}</td>
+                                                                
+        
+                                                            </tr>
+                                                    <!--<tr>
+                                                        <td>Deposite</td>
+                                                        <td>karhja2343</td>
+                                                        <td>0.00028</td>
+                                                        <td class="text-nowrap">13/09/2018 | 04:44 PM</td>
+                                                        <td>karhja2343</td>
+                                                    </tr>-->
+                                                </tbody>
+                                            </table>
+                                            <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                                        </div>
+                                        <!-- <div class="tbl_footer">
+                                            <div class="row align-items-center flex-wrap">
+                                                <div class="col-md-7">
+                                                    <p class="small m-0">Showing results 7 of 14 out of 20</p>
+                                                </div>
+                                                <div class="col-md-5 text-md-right">
+                                                    <ul class="pagination d-inline-flex my-2">
+                                                        
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="#">20</a>
+                                                        </li>
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="#">Next</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+
+    </div>
+</div>
+
+<app-logout></app-logout>

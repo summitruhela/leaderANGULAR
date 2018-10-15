@@ -1,0 +1,90 @@
+
+
+
+    <div class="wrapper ">
+       
+            <app-sidebar></app-sidebar>
+
+     
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-absolute fixed-top ">
+                <div class="container-fluid">
+                       
+
+                    <div class="navbar-wrapper">
+                        <a class="navbar-brand">Static Content Management</a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="sr-only">Toggle Nav</span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end">
+                      
+                             
+                                <app-side-icon></app-side-icon>
+                        
+                    </div>
+                  
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="content">
+                <div class="container-fluid pt-4">
+                    <div class="card">
+                        <div class="card-header card-header-tabs card-header-primary">
+                            <h4 class="card-title font-weight-bold">Content Management</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive mt-3">
+                                <table class="table table-bordered">
+                                    <thead class="border-top text-primary">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th class="text-center">Page Name</th>
+                                            <th class="text-right">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>01</td>
+                                            <td class="text-center">Terms of Use</td>
+                                            <td class="text-right">
+                                                <a class="btn btn-sm btn-primary" (click)="terms('terms')">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>02</td>
+                                            <td class="text-center">FAQ</td>
+                                            <td class="text-right">
+                                                <a  class="btn btn-sm btn-primary" (click)="faq('faq')">
+                                                                                                
+                                                  
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                     
+                                        
+                                    </tbody>
+                                </table>
+                         
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <app-footer></app-footer>
+        </div>
+    </div>
+   
+    <app-logout></app-logout>
+
+
+
+

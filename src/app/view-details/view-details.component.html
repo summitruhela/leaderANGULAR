@@ -1,0 +1,182 @@
+<div class="wrapper ">
+      
+    <app-sidebar></app-sidebar>
+
+  
+  <div class="main-panel">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-absolute fixed-top ">
+      <div class="container-fluid">
+        <div class="navbar-wrapper">
+          <a class="navbar-brand" href="javascript:void(0);">User Details</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="sr-only">Toggle Nav</span>
+          <span class="navbar-toggler-icon icon-bar"></span>
+          <span class="navbar-toggler-icon icon-bar"></span>
+          <span class="navbar-toggler-icon icon-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end">
+       
+         
+             
+              <app-side-icon></app-side-icon>
+            
+          
+        </div>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+    
+    <div class="content">
+          <div class="container-fluid pt-4">
+                  <div class="card">
+
+                          <div class="card-header card-header-tabs card-header-primary">
+                                  <h4 class="card-title font-weight-bold">User Details</h4>
+
+                              </div>
+                              <div class="card-body">
+
+
+       
+                  <br>
+                  
+                    <div class="form-group row align-items-baseline">
+                        <label class="col-md-5"><b style="color:black">Name :</b></label>
+                        <div class="col-md-7">
+                             
+                           <label> <b  style="color:black">{{userData.userName}}</b></label>
+                        </div>
+                    </div>
+                   <div class="form-group row align-items-baseline">
+                        <label class="col-md-5"><b style="color:black">Email :</b></label>
+                        <div class="col-md-7">
+                            <label><b  style="color:black">{{userData.email}}</b></label>
+                        </div>
+                    </div>
+                    <div class="form-group row align-items-baseline">
+                        <label class="col-md-5"><b style="color:black">Phone No:</b></label>
+                        <div class="col-md-7">
+                            <label><b  style="color:black">{{userData.mobileNumber}}</b></label>
+                        </div>
+                    </div>
+                    <div class="form-group row align-items-baseline">
+                        <label class="col-md-5"><b style="color:black">Wallet Address:</b></label>
+                        <div class="col-md-7">
+                            <label><b  style="color:black">{{userData.walletAddress}}</b></label>
+                        </div>
+                    </div>
+                    <div class="form-group row align-items-baseline">
+                        <label class="col-md-5"><b style="color:black">Status :</b></label>
+                        <div class="col-md-7">
+                            <label><b style="color:black">{{userData.status}}</b></label>
+                        </div>
+                    </div>
+                  
+                    <br> 
+                    <div  class="text-left mt40">
+                        <!-- <a href="edit-profile.html" class="btn btn-large  max-WT-200 font-100 btn-green">Edit Profile</a> -->
+                        <button  (click)="back()" class="btn btn-large  max-WT-200 font-100 btn-grey ml5 ">Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+            </div>
+          </div>
+          
+        
+<!--      
+            <div class="content">
+              <div class="container-fluid  pt-4">
+                      <div class="card my-3"> -->
+                              <!-- <div class="card-header card-header-primary"> -->
+                                  <!-- <div class="row align-items-center">
+                                     
+                                      <div class="col-md-4 text-md-right">
+
+                                           
+    <div class="content-section">
+
+          <div class="order-view mt30 max-WT-700 mrgn-0-auto">
+              <div class="main-block-innner mb40 mt40">
+                  <div class="add-store-block input-style">
+                     
+                    <br>
+                    <br>  <br>  <br>  <br>  <br>  <br>
+                      <div class="user-profile">
+                          <div class="image-box">
+                              <img src="img/profile-img.jpg" class="profile-pic">
+                          </div>
+                      </div>
+                      <div class="form-group row align-items-baseline">
+                          <label class="col-md-5">Name :</label>
+                          <div class="col-md-7">
+                               
+                              <label>{{userData.userName}}</label>
+                          </div>
+                      </div>
+                     <div class="form-group row align-items-baseline">
+                          <label class="col-md-5">Email :</label>
+                          <div class="col-md-7">
+                              <label>{{userData.email}}</label>
+                          </div>
+                      </div>
+                      <div class="form-group row align-items-baseline">
+                          <label class="col-md-5">Phone No:</label>
+                          <div class="col-md-7">
+                              <label>{{userData.mobileNumber}}</label>
+                          </div>
+                      </div>
+                      <div class="form-group row align-items-baseline">
+                          <label class="col-md-5">Wallet Address:</label>
+                          <div class="col-md-7">
+                              <label>{{userData.walletAddress}}</label>
+                          </div>
+                      </div>
+                      <div class="form-group row align-items-baseline">
+                          <label class="col-md-5">Status :</label>
+                          <div class="col-md-7">
+                              <label>{{userData.status}}</label>
+                          </div>
+                      </div> -->
+                  
+                      <!-- <div class="form-group row align-items-baseline">
+                          <label class="col-md-5">Last Sign-In Device :</label>
+                          <div class="col-md-7">
+                              <label>{{userData. signInHistoryArray[0].lastDevice}}</label>
+                             
+                          </div>
+                      </div> -->
+                      <!-- <div class="form-group row align-items-baseline">
+                          <label class="col-md-5">Address :</label>
+                          <div class="col-md-7">
+                              <label>abc</label>
+                          </div>
+                      </div> -->
+                      <!-- <div class="text-left mt40"> -->
+                          <!-- <a href="edit-profile.html" class="btn btn-large  max-WT-200 font-100 btn-green">Edit Profile</a> -->
+                          <!-- <a (click)="back()" class="btn btn-large  max-WT-200 font-100 btn-grey ml5 ">Back</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+       -->
+                                        
+
+
+              <!-- </div> -->
+
+            <!-- </div>
+            </div>
+            </div> -->
+    <app-footer> </app-footer>
+ 
+
+
+<app-logout></app-logout>

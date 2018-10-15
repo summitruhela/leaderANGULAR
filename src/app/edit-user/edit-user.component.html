@@ -1,0 +1,122 @@
+
+
+
+
+  <div class="wrapper ">
+      
+      <app-sidebar></app-sidebar>
+
+    
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="javascript:void(0);">Edit User</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="sr-only">Toggle Nav</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+         
+           
+               
+                <app-side-icon></app-side-icon>
+              
+            
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      
+      <div class="content">
+            <div class="container-fluid pt-4">
+                    <div class="card">
+
+                            <div class="card-header card-header-tabs card-header-primary">
+                                    <h4 class="card-title font-weight-bold">Edit User</h4>
+
+                                </div>
+                                <div class="card-body">
+
+
+         
+                    <br>
+              
+                <div class="form-group row align-items-baseline">
+                    
+                  
+                    <div class="col-md-7">
+                        
+                      <form [formGroup]="userForm" > 
+                         <div>
+                      
+                          <input type="text" formControlName="userName" class="form-control"  placeholder="name" [(ngModel)]="userDetail.userName">
+                          <div class="danger" style="color:red"  *ngIf="(userForm.get('userName').hasError('required')) && userForm.get('userName').dirty" >
+                        *name is required
+                        </div>                            
+                         <div class="danger" style="color:red"  *ngIf="(userForm.get('userName').hasError('pattern')) && userForm.get('userName').dirty && !((userForm.get('userName').hasError('required')))" >
+                            *Please enter correct name
+                          </div>
+                         </div>
+                         <div>
+                     
+                          <input type="text" formControlName="email" class="form-control"  placeholder="email" [(ngModel)]="userDetail.email">
+                          <div class="danger" style="color:red"  *ngIf="(userForm.get('email').hasError('required')) && userForm.get('email').dirty" >
+                        *email is required
+                        </div>                            
+                         <div class="danger" style="color:red"  *ngIf="(userForm.get('email').hasError('pattern')) && userForm.get('email').dirty && !((userForm.get('email').hasError('required')))" >
+                            *Please enter correct email
+                          </div>
+                         </div>
+                         <div>
+            
+                          <input type="text" formControlName="mobile" class="form-control"  placeholder="mobile" [(ngModel)]="userDetail.mobileNumber">
+                          <div class="danger" style="color:red"  *ngIf="(userForm.get('mobile').hasError('required')) && userForm.get('mobile').dirty" >
+                        *mobile number is required
+                        </div>                            
+                         <div class="danger" style="color:red"  *ngIf="(userForm.get('mobile').hasError('pattern')) && !(userForm.get('mobile').hasError('minlength')) && userForm.get('mobile').dirty && !((userForm.get('mobile').hasError('required')))" >
+                            *Please enter correct mobile number
+                          </div>
+                          <div class="danger" style="color:red"  *ngIf="(userForm.get('mobile').hasError('minlength')) && userForm.get('mobile').dirty && !((userForm.get('mobile').hasError('required')))" >
+                              *minimum length must be 10
+                            </div>
+                            <div class="danger" style="color:red"  *ngIf="(userForm.get('mobile').hasError('maxlength')) && userForm.get('mobile').dirty && !((userForm.get('mobile').hasError('required')))" >
+                                *maximum length must be 16
+                              </div>
+                         </div>  
+                              
+                             <!-- <br> <button  class="btn btn-primary full-width" (click)="userdata(userForm.value)"> Update</button> -->
+                        </form>
+                    </div>
+                </div>
+              
+                <br> 
+                <div  class="text-left mt40">
+                    <button  (click)="back()" class="btn btn-primary full-width">Back</button><button  class="btn btn-primary full-width" (click)="userdata(userForm.value)"> Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+      
+              </div>
+            </div>
+            
+          
+
+      <app-footer> </app-footer>
+   
+
+
+  <app-logout></app-logout>
+
+
+
+
+

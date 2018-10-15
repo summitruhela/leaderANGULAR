@@ -1,0 +1,142 @@
+<body class="">
+    <div class="wrapper">
+            <app-sidebar></app-sidebar>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-absolute fixed-top ">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <a class="navbar-brand" href="javascript:void(0);">FAQ</a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="sr-only">Toggle Nav</span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end">
+                      
+                        <app-side-icon></app-side-icon>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="content">
+                <div class="container-fluid pt-4">
+                    <div class="card">
+                        <div class="card-header card-header-tabs card-header-primary">
+                            <h4 class="card-title font-weight-bold">Static Content Management</h4>
+                            <div class="card-header card-header-tabs">
+                                <button type="submit" (click)="add()"  class="btn btn-primary pull-right" style="background-color:#41afd8" >Add FAQ</button>
+                           
+                        </div>
+                            <p class="card-category"></p>
+                        </div>
+                      
+                                
+                        <div class="card-body">
+                            
+                            <div class="add-faq-block">
+                                <div>
+                                 
+                                        <div  *ngFor="let item of customDataList.dataList | paginate: { itemsPerPage:customDataList.limit , currentPage: customDataList.page, totalItems: customDataList.total }; let i = index" >
+                                            <div style="padding:10px; border-radius:15px; 
+                                            padding: 20px; 
+                                            width: 100%;
+                                            background-color: #DDDDDD;
+                                            ">
+                                            <!--for loop-->
+                                            
+                                            <div class="row">
+                                           
+                                            <td *ngIf="p == 1" class="col-sm-2 form-label" style="color: black;
+                                            -webkit-text-stroke-width: 0.3px;">Ques{{i + 1}}</td>
+                                            <td *ngIf="p > 1" class="col-sm-2 form-label" style="color: black;
+                                                -webkit-text-stroke-width: 0.3px;">Ques{{i + 1 + 4 * (p-1)}}</td>
+                                            <!-- <label class="col-sm-2 form-label" style="color: black;
+                                            -webkit-text-stroke-width: 0.3px;"> {{i +1}} :</label> -->
+                                            <div class="question-block col-sm-9">
+                                                    {{item.Ques}}
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <div class="row">
+                                                    <a (click)="edit(item._id)" class="col-sm-6" href="javascript:;"><i class="fa fa-edit" style="margin-right:10px; font-size:24px"></i></a>
+                                                    
+                                                    <a class="col-sm-6 text-danger">
+                                                        <i class="fa fa-trash" data-target="#deletePopup"  data-toggle="modal" (click)='open(item._id)' style="margin-right:10px;font-size:24px">
+                                                        </i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                               
+                                            </div>
+                                           
+                                          
+                                            <!----><br/>
+                                            <div class="row">
+                                                    <td *ngIf="p == 1" class="col-sm-2 form-label" style="color: black;
+                                                    -webkit-text-stroke-width: 0.3px;">Ans{{i + 1}}</td>
+                                                    <td *ngIf="p > 1" class="col-sm-2 form-label" style="color: black;
+                                                        -webkit-text-stroke-width: 0.3px;">Ans{{i + 1 + 4 * (p-1)}}</td>
+                                                <!-- <label class="col-sm-2" style="color: black;
+                                                -webkit-text-stroke-width: 0.3px;">Ans {{i + 1}} :</label>
+                                                <td *ngIf="p > 1">{{i + 1 + 4 * (p-1)}}</td> -->
+                                                <div class="col-sm-9 question-block">
+                                                    {{item.Ans}}
+                                                </div>
+                                                <div class="col-sm-1"></div>
+                                            </div>
+                                            <br/>
+                                            <br/>
+                                        </div>
+                                        <br/><br/><br/>
+                                        </div>
+                                        
+                                       
+                                        <p *ngIf='!customDataList.dataList?.length'>No  questions  is available</p>
+                                        <div *ngIf='customDataList.dataList?.length'>
+                                        <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                                    </div>     
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <app-footer>
+                
+                         
+            </app-footer>
+        </div>
+    </div>
+
+    <div class="modal fade global-modal reset-modal" id="deletePopup">
+            <div class="modal-dialog max-WT-500">
+                <div class="modal-content">
+                    <div class="inner_border_area">
+                        <!-- Modal body -->
+                        <div class="modal-body  text-center">
+                            <div class="row align-items-center modal_flax_height">
+                                <div class="col">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                    <div class="box-title mb40 d-inline-block">
+                                        <!-- <i class="fas fa-power-off off-icon"></i> -->
+                                        <p class="mt40">Are you sure you want to Delete?</p>
+                                      
+                                    </div>
+                                    <div class="text-center">
+                                        <a href="javascript:;" class="btn btn-blue btn-noYes"(click)="delete()">YES</a>
+                                        <button type="button" class="btn btn-red btn-noYes" data-dismiss="modal">CANCEL</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+    <!-- logout modal -->
+    <app-logout></app-logout>
+

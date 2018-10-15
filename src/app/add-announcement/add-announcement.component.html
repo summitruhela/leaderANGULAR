@@ -1,0 +1,147 @@
+    <div class="wrapper ">
+            <app-sidebar></app-sidebar>
+        <div class="main-panel">
+            <!-- Navbar -->
+          
+            <nav class="navbar navbar-expand-lg navbar-absolute fixed-top ">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <a class="navbar-brand" href="javascript:void(0);">Add Annoucements</a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="sr-only">Toggle Nav</span>
+                        <!-- <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span> -->
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end">
+                                <app-side-icon></app-side-icon>
+                     </div>
+                   
+                </div>
+            </nav>
+           
+            <!-- End Navbar -->
+            <div class="content">
+                <div class="container-fluid pt-4">
+                    <div class="card">
+                        <div class="card-header card-header-tabs card-header-primary">
+                            <h4 class="card-title font-weight-bold">Add Annoucements</h4>
+                        </div>
+                        <form class="form" [formGroup]='Form'>
+                        <div class="card-body">
+                          
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <div class="form-group bmd-form-group">
+                                                <!-- <label class="bmd-label-floating">Title </label> -->
+                                                <input type="text" class="form-control" [formControl]="Form.controls['title']" placeholder="Title" maxlength="50" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="custom-file">
+                                                <input type="file" id="file" (change)="onImageChange($event)" accept="image/*">
+                                                <span class="custom-file-control">{{fileName }}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="form-group bmd-form-group">
+                                                <!-- <label class="bmd-label-floating"> Write Description</label> -->
+                                                <textarea class="form-control" rows="5" [formControl]="Form.controls['Description']" placeholder="Write Description" maxlength="500"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-100">
+                                    <h4 class="font-weight-bold">Annoucements Validity:</h4>
+                                </div>
+                                <div class="row align-items-baseline">
+                                    <div class="col-md-3">
+                                        <div class="form-group bmd-form-group">
+                                            <div class="input-group">
+                                                <label ><b>Start Date</b></label>
+                                               
+                                                <form #myForm="ngForm" novalidate>
+                                                    <my-date-picker name="mydate" [options]="myDatePickerOptions"
+                                                    [formControl]="Form.controls['StartDate']" (dateChanged)="onDateChanged($event)" required></my-date-picker>
+                                                </form>
+                                                <!-- <div class="input-group-append p-0">
+                                                    <span class="input-group-text material-icons p-0 ">date_range</span>
+                                                </div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-md-3">
+                                        <div class="form-group bmd-form-group">
+                                            <div class="input-group">
+                                                <label><b>End Date</b></label>
+                                               
+                                                <input type="date" class="form-control" min="{{maxAge | date:'yyyy-MM-dd'}}" [formControl]="Form.controls['EndDate']">
+                                                <form #myForm="ngForm" novalidate>
+                                                    <my-date-picker name="mydate" [options]="myDatePickerOptions2"
+                                                    [formControl]="Form.controls['EndDate']" (dateChanged)="onDateChanged2($event)" required></my-date-picker>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group bmd-form-group">
+                                                <div class="w-40">
+                                                        <h6 class="font-weight-bold">Assign:</h6>
+                                                    </div>
+                                            <!-- <label class="bmd-label-floating">Assign: </label> -->
+                                            <!-- <select class="form-control custom_select" [formControl]="Form.controls['user']">
+                                                <option value="">select User</option>
+                                                <option *ngFor="let item of userList">{{item?.userName}}</option>
+                                            </select> -->
+                                            <ng-multiselect-dropdown
+                                            [placeholder]="'Select User'"
+                                            [data]="userList"
+                                           
+                                     [formControl]="Form.controls['user']" 
+                                            [settings]="dropdownSettings"
+                                            >
+                                            </ng-multiselect-dropdown>
+                                            <!-- <input type="text" class="form-control"> -->
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-3">
+                                        <div class="form-group bmd-form-group">
+                                            <select class="form-control custom_select">
+                                                <option value="">1</option>
+                                                <option value="">1</option>
+                                            </select>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-md-12 text-md-right">
+                                        <div class="form-group bmd-form-group d-inline-flex">
+                                            <button type="submit" class="btn btn-primary " (click)="add()" [disabled]="Form.invalid || !image ">ADD </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="clearfix"></div>
+                            
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <app-footer></app-footer>
+
+        </div>
+    </div>
+       <app-logout></app-logout>
+
+   
+
+

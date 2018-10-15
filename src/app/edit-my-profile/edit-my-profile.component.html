@@ -1,0 +1,105 @@
+
+
+
+
+  <div class="wrapper ">
+      
+      <app-sidebar></app-sidebar>
+
+    
+    <div class="main-panel">
+    
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="javascript:void(0);"></a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="sr-only">Toggle Nav</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+         
+           
+               
+                <app-side-icon></app-side-icon>
+              
+            
+          </div>
+        </div>
+      </nav>   
+      <div class="content">
+            <div class="container-fluid pt-4">
+                    <div class="card">
+
+                            <div class="card-header card-header-tabs card-header-primary">
+                                    <h4 class="card-title font-weight-bold">Edit Profile</h4>
+                                </div>
+                                <div class="card-body">
+                                        <br>
+                    <form [formGroup]="formgroup" > 
+                <div class="form-group row align-items-baseline" align="center">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label class="col-md-5 align-items-center d-flex justify-content-center" style="color: black">Name :</label>
+                              <div class="col-md-7">
+                                  
+                                  <!-- <input type="text" placeholder="Email" [formControl]="formgroup.controls['email']" class="form-control" /> -->
+                                        <input type="text" formControlName="userName" class="form-control" placeholder="name" />
+                                        <p *ngIf="formgroup.get('userName').hasError('required') && formgroup.get('userName').dirty" style="color:red">*Name is required</p>
+                                        <p *ngIf="formgroup.controls['userName'].hasError('pattern') && formgroup.controls['userName'].dirty" style="color:red">*Please enter valid name.</p>
+                                      </div>  
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="row">
+                              <label class="col-md-5 align-items-center d-flex justify-content-center" style="color: black">Mobile Number:</label>
+                              <div class="col-md-7">
+                                  
+                                <!-- <form [formGroup]="userForm" >  -->
+                                        <input type="text" formControlName="mobileNumber" class="form-control"  placeholder="Mobile number" maxlength="10">
+                                        <p *ngIf="formgroup.get('mobileNumber').hasError('required') && formgroup.get('mobileNumber').dirty" style="color:red">*Mobile number is required</p>
+                                        <p *ngIf="formgroup.controls['mobileNumber'].hasError('pattern') && formgroup.controls['mobileNumber'].dirty" style="color:red">*Please enter valid Mobile number.</p>
+
+                                        <p *ngIf="formgroup.controls['mobileNumber'].hasError('maxlength') && formgroup.controls['mobileNumber'].dirty" style="color:red">*Mobile number should be 10 digit.</p>
+
+                                      <!-- <br> <button  class="btn btn-red btn-black" (click)="userdata(userForm.value)"> Change Name</button> -->
+                                  <!-- </form> -->
+                              </div>
+                              </div>
+                          </div>
+                </div>
+              </form>
+                <br> 
+                <div  class="text-left mt40">
+                    <div class="row" align="center">
+                        <div class="col-md-10">
+                    <button  (click)="back()" class="btn btn-default full-width">Back</button>
+                    <button  (click)="update(formgroup.value)" class="btn btn-primary full-width">update</button>
+                          </div>
+                          </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+      
+              </div>
+            </div>
+            
+          
+
+      <app-footer> </app-footer>
+   
+
+
+  <app-logout></app-logout>
+
+
+
+
+

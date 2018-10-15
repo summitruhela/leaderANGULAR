@@ -1,0 +1,180 @@
+
+
+
+
+    <div class="wrapper ">
+         
+        <app-sidebar></app-sidebar>
+
+  
+    <div class="main-panel">
+        
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-absolute fixed-top ">
+            <div class="container-fluid">
+                <div class="navbar-wrapper">
+                    <a class="navbar-brand" >Token Manangement</a>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="sr-only">Toggle Nav</span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end">
+                  
+                            <app-side-icon></app-side-icon>
+                     
+                   
+                </div>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+/////////////////////////////////////////////////////////////////////////////////////////////////
+        <div class="content">
+            <div class="container-fluid  pt-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card my-3">
+                    <div class="card-header card-header-primary">
+                            <h4 class="card-title font-weight-bold text-center">Token Manangement</h4>
+                            <div class="row align-items-center">
+                                <div class="col-md-4">
+                                        <form> 
+                                            <div class="form-group">
+                                                <div class="search-icon" >
+                                                    
+                                                        <input type="text" (keyup)="search()" class="form-control max-wt-300 search-input" placeholder="Search By Name" [(ngModel)]='searchValue' [ngModelOptions]="{standalone: true}">
+                                                </div>
+                                            </div>
+                                        </form>        
+                                 </div>
+                                <div class="col-md-8">
+                                   <div class="text-right">
+                                    <button type="submit" (click)="add()"  class="btn btn-primary add-token-btn">Add Token </button>
+                                    </div>
+                                </div>
+                            </div>
+                      
+                      <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
+
+                      
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <div class=" text-center d-block">
+                            <button type="button" (click)="adminToken()" class="btn btn-primary">Admin Token</button>
+                            <button type="button" (click)="userToken()" class="btn btn-primary">User Token</button>
+                          </div>
+                        <table class="table table-bordered">
+                          <thead class=" text-primary border-top">
+                            <th>Contract Address</th>
+                            <th>Action</th>
+                            <th>Created Date </th>
+                          </thead>
+                          <tbody>
+                         
+                            <tr *ngFor="let item of data | paginate: { itemsPerPage: limit, currentPage: p, totalItems: total } ">
+                                <td>{{item?.tokenName }}</td>
+                              
+                                <td *ngIf="item.action == 'ACTIVE'" ><input type="checkbox" (click)="status(item)" checked ></td>
+                                <td *ngIf="item.action == 'DEACTIVE'" ><input type="checkbox" (click)="status(item)"></td>
+                                <td>{{item?.createdAt | date:  'MMM d, y, h:mm:ss a'}}</td>
+                            </tr>
+                             
+                          </tbody>
+                        </table>
+                        <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                      </div>
+                      <div class="tbl_footer">
+                          <div class="row align-items-center flex-wrap">
+                            <!-- <div *ngIf="paginationData.total >10">
+                          </div> -->
+                              <!-- <div class="col-md-5 text-md-right">
+                                    <ul class="pagination d-inline-flex my-2">
+                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">...</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">20</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                    </ul>
+                              </div> -->
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+    
+    
+    <!-- signout_modal Start -->
+    <div class="modal fade global-modal reset-modal" id="signout_modal">
+      <div class="modal-dialog max-WT-500 modal-dialog-centered">
+          <div class="modal-content">
+              <div class="inner_border_area">
+                  <!-- Modal body -->
+                  <div class="modal-body  text-center">
+                      <div class="row align-items-center modal_flax_height">
+                          <div class="col">
+                              <div class="box-title mb40 d-inline-block">
+                                  <!-- <i class="fas fa-power-off off-icon"></i> -->
+                                  <p class="mt40">Are you sure you want to Delete?</p>
+                              </div>
+                              <div class="text-center">
+                                  <a href="javascript:;" class="btn btn-primary btn-noYes mr-2"(click)="yes()">YES</a>
+                                  <button type="button" class="btn btn-danger btn-noYes" data-dismiss="modal">CANCEL</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    
+    <!-- Signout Modal -->
+    <!-- ------------ ----  status modal----- - - - - -- - - - -- - - - - - - - - - -->
+    
+    <div class="modal fade global-modal reset-modal" id="Status_modal">
+      <div class="modal-dialog max-WT-500 modal-dialog-centered">
+          <div class="modal-content">
+              <div class="inner_border_area">
+                  <!-- Modal body -->
+                  <div class="modal-body  text-center">
+                    <div class="row align-items-center modal_flax_height">
+                        <div class="col">
+                            <div class="box-title mb40 d-inline-block">
+                                <!-- <i class="fas fa-power-off off-icon"></i> -->
+                                <p class="mt40">Are you sure you want to {{ stat }} this user?</p>
+                            </div>
+                            <div class="text-center">
+                                <a href="javascript:;" class="btn btn-primary btn-noYes mr-2"(click)="yes1()">YES</a>
+                                <button type="button" class="btn btn-danger btn-noYes" data-dismiss="modal">CANCEL</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+          </div>
+          <app-footer> </app-footer>
+        </div>
+      </div>
+    
+<app-logout></app-logout>
+
+
+
